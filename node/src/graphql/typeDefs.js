@@ -5,7 +5,7 @@ type User {
     name: String!
     email: String
     bio: String
-    friends: [User!]! @relationship(type: "FRIEND_WITH", direction: OUT)
+    friends: [User!]! @relationship(type: "FRIEND", direction: OUT)
   }
 
   type Ride {
