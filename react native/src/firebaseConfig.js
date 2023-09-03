@@ -4,13 +4,13 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const firebaseConfig = {
-  apiKey: process.env.apiKey,
-  authDomain: process.env.authDomain,
-  projectId: process.env.projectId,
-  storageBucket: process.env.storageBucket,
-  messagingSenderId: process.env.messagingSenderId,
-  appId: process.env.appId,
-  measurementId: process.env.measurementId,
+  apiKey: process.env.firebaseApiKey,
+  authDomain: process.env.firebaseAuthDomain,
+  projectId: process.env.firebaseProjectId,
+  storageBucket: process.env.firebaseStorageBucket,
+  messagingSenderId: process.env.firebaseMessagingSenderId,
+  appId: process.env.firebaseAppId,
+  measurementId: process.env.firebaseMeasurementId,
 };
 
 const app = initializeApp(firebaseConfig);
