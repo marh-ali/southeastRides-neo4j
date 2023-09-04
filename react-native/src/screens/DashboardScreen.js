@@ -10,7 +10,7 @@ function DashboardScreen({ navigation }) {
       <Text>Dashboard Screen!</Text>
       <Button
         title="Go to Details"
-        onPress={() => navigation.push("Settings")}
+        onPress={() => navigation.navigate("Settings")}
       />
     </View>
   );

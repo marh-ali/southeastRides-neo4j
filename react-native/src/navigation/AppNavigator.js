@@ -1,22 +1,17 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Text } from "react-native";
-import { Button } from "react-native-elements";
 import DashboardScreen from "../screens/DashboardScreen";
-import SignInScreen from "../screens/SignInScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 
 const Stack = createNativeStackNavigator();
 
-function AppNavigator({ promptAsync }) {
+function AppNavigator({ signOutUser }) {
   return (
     <Stack.Navigator initialRouteName="Dashboard">
       <Stack.Screen name="Dashboard" component={DashboardScreen} />
-      <Stack.Screen name="Settings" component={SettingsScreen} />
-      {/* <Stack.Screen
-        name="GoogleSignIn"
-        children={() => <GoogleSignInScreen promptAsync={promptAsync} />}
-      /> */}
+      <Stack.Screen name="Settings">
+        {(props) => <SettingsScreen {...props} signOutUser={signOutUser} />}
+      </Stack.Screen>
     </Stack.Navigator>
   );
 }
