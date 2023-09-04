@@ -11,14 +11,7 @@ const firebaseConfig = {
   appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.EXPO_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
-console.log("Firebase Config:", firebaseConfig);
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+//const analytics = getAnalytics(app);
 export const auth = getAuth(app);
-
-//IOS:
-// 552910966257-n051v5p1i9r95rsrqsfnk5o8t5p5d6l6.apps.googleusercontent.com
-
-//Android:
-// 552910966257-t9e63si3hd8mb7ouvtcra2fmm3s1nkj0.apps.googleusercontent.com
