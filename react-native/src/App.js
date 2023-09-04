@@ -12,6 +12,7 @@ import {
   signInWithCredential,
 } from "firebase/auth";
 import { auth } from "./firebaseConfig.js";
+import SignInScreen from "./screens/SignInScreen";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -30,12 +31,27 @@ function App() {
     }
   }, [response]);
 
-  return (
+  // create user in db, or locally in this case (set it up w/ apollo client)
+  React.useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(JSON.stringify(user, null, 2));
+        setUserInfo(user);
+      } else {
+        console.log("no user");
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  return userInfo ? (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <AppNavigator promptAsync={promptAsync} />
+        <AppNavigator />
       </NavigationContainer>
     </ApolloProvider>
+  ) : (
+    <SignInScreen promptAsync={promptAsync} />
   );
 }
 

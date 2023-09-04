@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 
-const GoogleSignInScreen = ({ promptAsync }) => {
+const SignInScreen = ({ promptAsync }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sign In with Google</Text>
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GoogleSignInScreen;
+export default SignInScreen;
