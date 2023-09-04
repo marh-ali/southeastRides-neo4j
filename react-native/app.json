@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "southeastRides",
+    "slug": "southeastRides",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "dev.vitruviusio.southeastrides"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "dev.vitruviusio.southeastrides"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "scheme": "southeast-rides",
+    "extra": {
+      "eas": {
+        "projectId": "74a156f4-86d5-4f80-a4b6-f30b04264d38"
+      }
+    },
+    "plugins": [
+      "expo-dev-client"
+    ]
+  }
+}

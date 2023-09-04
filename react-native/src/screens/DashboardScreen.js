@@ -7,7 +7,7 @@ import { Button } from "react-native-elements";
 function DashboardScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Dashboard Screen</Text>
+      <Text>Dashboard Screen!</Text>
       <Button
         title="Go to Details"
         onPress={() => navigation.push("Details")}
