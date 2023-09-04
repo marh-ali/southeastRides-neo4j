@@ -49,7 +49,7 @@ function App() {
       setLoading(true);
       const userJSON = await AsyncStorage.getItem("@user");
       const userData = userJSON ? JSON.parse(userJSON) : null;
-      console.log("user data", userData);
+      //console.log("user data", userData);
       if (new Date().getTime() > userData.stsTokenManager.expirationTime)
         console.log("token expired");
       setUserInfo(userData);
@@ -84,7 +84,7 @@ function App() {
   return userInfo ? (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <AppNavigator signOutUser={signOutUser} />
+        <AppNavigator signOutUser={signOutUser} userInfo={userInfo} />
       </NavigationContainer>
     </ApolloProvider>
   ) : (
