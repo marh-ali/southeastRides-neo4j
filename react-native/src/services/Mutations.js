@@ -1,10 +1,24 @@
 import { gql } from "@apollo/client";
 
-export const ADD_SOME_DATA = gql`
-  mutation AddSomeData($name: String!) {
-    addSomeData(name: $name) {
-      id
-      name
+export const CREATE_USER = gql`
+  mutation CreateUser($input: [UserCreateInput!]!) {
+    createUsers(input: $input) {
+      users {
+        uid
+        displayName
+        email
+      }
+    }
+  }
+`;
+
+// a mutation to update user display name
+export const UPDATE_USER_DISPLAY_NAME = gql`
+  mutation UpdateUserDisplayName($where: UserWhere, $update: UserUpdateInput) {
+    updateUsers(where: $where, update: $update) {
+      users {
+        displayName
+      }
     }
   }
 `;

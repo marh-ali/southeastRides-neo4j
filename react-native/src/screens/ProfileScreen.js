@@ -1,14 +1,89 @@
-// create tempalte profile screen
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useState } from "react";
+import { View, Text, Image, StyleSheet, TextInput, Button } from "react-native";
+import { useQuery, useMutation } from "@apollo/client";
+import { GET_USER_BY_ID } from "../services/Queries";
+import { UPDATE_USER_DISPLAY_NAME } from "../services/Mutations";
 
 function ProfileScreen({ userInfo }) {
+  const [newDisplayName, setNewDisplayName] = useState("");
+  const [newBio, setNewBio] = useState("");
+
+  const { loading, error, data } = useQuery(GET_USER_BY_ID, {
+    variables: { where: { uid: userInfo?.uid } },
+    skip: !userInfo,
+  });
+
+  const [updateDisplayName] = useMutation(UPDATE_USER_DISPLAY_NAME);
+
+  const handleUpdateDisplayName = () => {
+    updateDisplayName({
+      variables: {
+        where: { uid: userInfo?.uid },
+        update: { displayName: newDisplayName },
+      },
+    });
+  };
+
+  if (loading) return <Text>Loading...</Text>;
+  if (error) return <Text>Error: {error.message}</Text>;
+
+  const user = data?.users[0];
+
   return (
-    <View>
-      <Text>Profile Screen</Text>
-      <Text>{JSON.stringify(userInfo, null, 2)}</Text>
+    <View style={styles.container}>
+      <Image source={{ uri: user?.photoURL }} style={styles.profileImage} />
+      <Text style={styles.displayName}>{user?.displayName}</Text>
+      <TextInput
+        placeholder="New display name"
+        value={newDisplayName}
+        onChangeText={setNewDisplayName}
+      />
+      <Button title="Update Display Name" onPress={handleUpdateDisplayName} />
+      <Text style={styles.email}>{user?.email}</Text>
+      <Text style={styles.phoneNumber}>{user?.phoneNumber}</Text>
+      <Text style={styles.bio}>{user?.bio}</Text>
+      <Text style={styles.createdAt}>
+        User since: {new Date(user?.createdAt).toLocaleDateString()}
+      </Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#f5f5f5",
+  },
+  profileImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginBottom: 20,
+  },
+  displayName: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  email: {
+    fontSize: 16,
+    marginBottom: 10,
+  },
+  phoneNumber: {
+    fontSize: 16,
+    marginBottom: 10,
+  },
+  bio: {
+    fontSize: 16,
+    marginBottom: 10,
+    textAlign: "center",
+  },
+  createdAt: {
+    fontSize: 14,
+    color: "grey",
+  },
+});
 
 export default ProfileScreen;
