@@ -1,13 +1,15 @@
 export const typeDefs = `#graphql
 
 type User {
-    id: ID! @id
-    name: String!
+    uid: ID!
+    displayName: String!
     email: String!
+    phoneNumber: String
     bio: String
     friends: [User!]! @relationship(type: "FRIEND", direction: OUT)
     photoURL: String
-    providerId: String!
+    createdAt: String!
+    lastLoginAt: String!
   }
 
   type Ride {

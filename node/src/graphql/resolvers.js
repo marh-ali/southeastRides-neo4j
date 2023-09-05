@@ -13,7 +13,7 @@ const addFriend = async (_, { userId, friendId }) => {
   };
 
   const query = `
-      MATCH (a:User {id: $userId}), (b:User {id: $friendId})
+      MATCH (a:User {uid: $userId}), (b:User {uid: $friendId})
       OPTIONAL MATCH (a)-[r:FRIEND]->(b)
       RETURN a, b, r
     `;
@@ -29,7 +29,7 @@ const addFriend = async (_, { userId, friendId }) => {
   }
 
   const createFriendshipQuery = `
-      MATCH (a:User {id: $userId}), (b:User {id: $friendId})
+      MATCH (a:User {uid: $userId}), (b:User {uid: $friendId})
       MERGE (a)-[:FRIEND]->(b)
       MERGE (b)-[:FRIEND]->(a)
       RETURN a, b
@@ -49,7 +49,7 @@ const unfriend = async (_, { userId, friendId }) => {
   };
 
   const query = `
-        MATCH (a:User {id: $userId})-[r:FRIEND]-(b:User {id: $friendId})
+        MATCH (a:User {uid: $userId})-[r:FRIEND]-(b:User {uid: $friendId})
         DELETE r
         RETURN COUNT(r) as removedCount
     `;
@@ -80,7 +80,7 @@ const attendRide = async (_, { userId, rideId }) => {
 
   // First, check if the ride creator and the user are friends
   const checkFriendshipQuery = `
-      MATCH (u:User {id: $userId})-[:FRIEND]-(:User)-[:CREATED]-(r:Ride {id: $rideId})
+      MATCH (u:User {uid: $userId})-[:FRIEND]-(:User)-[:CREATED]-(r:Ride {id: $rideId})
       RETURN r
   `;
 
@@ -92,7 +92,7 @@ const attendRide = async (_, { userId, rideId }) => {
 
   // If the friendship exists, add the ATTENDING relationship
   const attendQuery = `
-      MATCH (u:User {id: $userId}), (r:Ride {id: $rideId})
+      MATCH (u:User {uid: $userId}), (r:Ride {id: $rideId})
       MERGE (u)-[:ATTENDING]->(r)
       RETURN r
   `;

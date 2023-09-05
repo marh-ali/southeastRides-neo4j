@@ -9,6 +9,10 @@ const neoSchema = new Neo4jGraphQL({ typeDefs, driver, resolvers });
 
 const server = new ApolloServer({
   schema: await neoSchema.getSchema(),
+  cors: {
+    origin: "*",
+    credentials: true,
+  },
 });
 
 const { url } = await startStandaloneServer(server, {
