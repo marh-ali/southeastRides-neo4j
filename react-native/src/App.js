@@ -16,6 +16,7 @@ import SignInScreen from "./screens/SignInScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ActivityIndicator, View } from "react-native";
 import UserHandler from "./UserHandler";
+import { AppProvider } from "./AppContext";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -99,10 +100,12 @@ function App() {
 
   return userInfo ? (
     <ApolloProvider client={client}>
-      <NavigationContainer>
-        <AppNavigator signOutUser={signOutUser} userInfo={userInfo} />
-        {userInfo && <UserHandler userInfo={userInfo} />}
-      </NavigationContainer>
+      <AppProvider>
+        <NavigationContainer>
+          <AppNavigator signOutUser={signOutUser} userInfo={userInfo} />
+          {userInfo && <UserHandler userInfo={userInfo} />}
+        </NavigationContainer>
+      </AppProvider>
     </ApolloProvider>
   ) : (
     <SignInScreen promptAsync={promptAsync} />

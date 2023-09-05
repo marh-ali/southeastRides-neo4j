@@ -3,17 +3,21 @@ import { View, Text, Image, StyleSheet, TextInput, Button } from "react-native";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_USER_BY_ID } from "../services/Queries";
 import { UPDATE_USER_DISPLAY_NAME } from "../services/Mutations";
+import { useAppContext } from "../AppContext"; // Import the custom hook
 
 function ProfileScreen({ userInfo }) {
   const [newDisplayName, setNewDisplayName] = useState("");
-  const [newBio, setNewBio] = useState("");
+  const { globalDisplayName, setGlobalDisplayName } = useAppContext(); // Use custom hook
 
   const { loading, error, data } = useQuery(GET_USER_BY_ID, {
     variables: { where: { uid: userInfo?.uid } },
-    skip: !userInfo,
   });
 
-  const [updateDisplayName] = useMutation(UPDATE_USER_DISPLAY_NAME);
+  const [updateDisplayName] = useMutation(UPDATE_USER_DISPLAY_NAME, {
+    onCompleted: (data) => {
+      setGlobalDisplayName(data.updateUsers.users[0].displayName); // Update global state
+    },
+  });
 
   const handleUpdateDisplayName = () => {
     updateDisplayName({
@@ -32,7 +36,10 @@ function ProfileScreen({ userInfo }) {
   return (
     <View style={styles.container}>
       <Image source={{ uri: user?.photoURL }} style={styles.profileImage} />
-      <Text style={styles.displayName}>{user?.displayName}</Text>
+      <Text style={styles.displayName}>
+        {globalDisplayName || user?.displayName}{" "}
+        {/* Use global state if available */}
+      </Text>
       <TextInput
         placeholder="New display name"
         value={newDisplayName}
