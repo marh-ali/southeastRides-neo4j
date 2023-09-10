@@ -44,13 +44,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 8,
   },
-  bio: {
-    fontSize: 16,
-    marginTop: 8,
-  },
   createdAt: {
     fontSize: 16,
     marginTop: 8,
+  },
+  signOutButton: {
+    marginTop: 16,
+    alignItems: "center",
   },
 });
 

@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import client from "./services/ApolloClient";
 import { AppProvider } from "./AppContext";
 import AppNavigator from "./navigation/AppNavigator";
-import SignInScreen from "./screens/SignInScreen"; // Import SignInScreen here
+import SignInScreen from "./screens/SignInScreen";
 
 const AppProviders = ({ children, userInfo, signOutUser, promptAsync }) => {
   return userInfo ? (

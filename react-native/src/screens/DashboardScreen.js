@@ -22,11 +22,11 @@ function DashboardScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Dashboard Screen!</Text>
-      <Button title="Profile" onPress={() => navigation.navigate("Profile")} />
       <Button
         title="Settings"
         onPress={() => navigation.navigate("Settings")}
       />
+
       <Button title="Fetch Users" onPress={fetchUsers} />
     </View>
   );
