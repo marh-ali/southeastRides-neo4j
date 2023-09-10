@@ -22,3 +22,14 @@ export const UPDATE_USER_DISPLAY_NAME = gql`
     }
   }
 `;
+
+// a mutation to update user bio
+export const UPDATE_USER_BIO = gql`
+  mutation UpdateUserBio($where: UserWhere, $update: UserUpdateInput) {
+    updateUsers(where: $where, update: $update) {
+      users {
+        bio
+      }
+    }
+  }
+`;

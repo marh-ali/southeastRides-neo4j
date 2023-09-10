@@ -5,29 +5,52 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#f5f5f5",
+    padding: 16,
+  },
+  nameWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   displayName: {
     fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 10,
   },
-  email: {
-    fontSize: 16,
-    marginBottom: 10,
+  displayNameInput: {
+    fontSize: 24,
+    borderBottomWidth: 1,
+    marginRight: 8,
   },
-  phoneNumber: {
-    fontSize: 16,
-    marginBottom: 10,
+  bioWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   bio: {
     fontSize: 16,
-    marginBottom: 10,
-    textAlign: "center",
+  },
+  bioInput: {
+    fontSize: 16,
+    borderBottomWidth: 1,
+    marginRight: 8,
+  },
+  editIcon: {
+    fontSize: 18,
+    marginLeft: 8,
+  },
+  email: {
+    fontSize: 16,
+    marginTop: 8,
+  },
+  phoneNumber: {
+    fontSize: 16,
+    marginTop: 8,
+  },
+  bio: {
+    fontSize: 16,
+    marginTop: 8,
   },
   createdAt: {
-    fontSize: 14,
-    color: "grey",
+    fontSize: 16,
+    marginTop: 8,
   },
 });
 

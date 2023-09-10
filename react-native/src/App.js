@@ -1,7 +1,6 @@
 // App.js
 import * as React from "react";
 import useLocalUserCheck from "./hooks/useLocalUserCheck";
-import SignInScreen from "./screens/SignInScreen";
 import useGoogleSignIn from "./hooks/useGoogleSignIn";
 import Loading from "./components/Loading";
 import AppProviders from "./AppProviders";

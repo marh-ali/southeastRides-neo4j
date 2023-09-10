@@ -4,9 +4,17 @@ const AppContext = createContext();
 
 export function AppProvider({ children }) {
   const [globalDisplayName, setGlobalDisplayName] = useState("");
+  const [globalBio, setGlobalBio] = useState("");
 
   return (
-    <AppContext.Provider value={{ globalDisplayName, setGlobalDisplayName }}>
+    <AppContext.Provider
+      value={{
+        globalDisplayName,
+        setGlobalDisplayName,
+        globalBio,
+        setGlobalBio,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );
