@@ -4,46 +4,39 @@ import { CREATE_USER } from "./services/Mutations";
 import { CHECK_USER_IN_DB } from "./services/Queries";
 
 export default function UserHandler({ userInfo }) {
-  const [shouldRefetch, setShouldRefetch] = useState(false); // New state to control refetching
+  const [shouldRefetch, setShouldRefetch] = useState(false);
 
-  // Log userInfo state
   useEffect(() => {}, [userInfo]);
 
-  // Query to check if user exists
   const {
     loading: queryLoading,
     error: queryError,
     data,
-    refetch, // Include refetch method for manual refetching
+    refetch,
   } = useQuery(CHECK_USER_IN_DB, {
     variables: { where: { uid: userInfo?.uid } },
-    skip: !userInfo, // Skip the query if userInfo is null or undefined
+    skip: !userInfo,
   });
 
-  // Log query data
   console.log("Query data:", data);
 
-  // Mutation to create a new user
   const [createUser, { loading: mutationLoading, error: mutationError }] =
     useMutation(CREATE_USER);
 
   useEffect(() => {
     if (shouldRefetch) {
-      refetch(); // Manually refetch the query if shouldRefetch is true
-      setShouldRefetch(false); // Reset refetch flag
+      refetch();
+      setShouldRefetch(false);
     }
   }, [shouldRefetch, refetch]);
 
-  // Main effect to handle user creation
   useEffect(() => {
-    console.log("Entered useEffect"); // Log entry point
+    console.log("Entered useEffect");
 
     if (userInfo && userInfo.metadata && !queryLoading && !queryError) {
-      // Check if user exists in the database
-      console.log("User exists in DB:", data?.users.length > 0); // Log user existence before mutation
+      console.log("User exists in DB:", data?.users.length > 0);
 
       if (data?.users.length === 0) {
-        // User doesn't exist, create a new one
         createUser({
           variables: {
             input: [
@@ -62,18 +55,17 @@ export default function UserHandler({ userInfo }) {
         })
           .then((response) => {
             console.log("User successfully created:", response.data);
-            setShouldRefetch(true); // Trigger a refetch after successful mutation
+            setShouldRefetch(true);
           })
           .catch((err) => {
             console.error("Error creating user:", err);
           });
       } else {
-        // User already exists
         console.log(`Welcome back ${userInfo.displayName}`);
       }
     }
 
-    console.log("Exited useEffect"); // Log exit point
+    console.log("Exited useEffect");
   }, [userInfo, queryLoading, queryError, data, createUser]);
 
   if (queryLoading || mutationLoading) {

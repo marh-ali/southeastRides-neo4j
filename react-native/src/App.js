@@ -1,4 +1,3 @@
-// App.js
 import * as React from "react";
 import useLocalUserCheck from "./hooks/useLocalUserCheck";
 import useGoogleSignIn from "./hooks/useGoogleSignIn";

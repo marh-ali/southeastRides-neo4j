@@ -5,11 +5,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import DashboardScreen from "../screens/DashboardScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import { Platform } from "react-native";
+import { signOut } from "firebase/auth";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function TabNavigator() {
+function TabNavigator({ userInfo, signOutUser }) {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -28,11 +29,20 @@ function TabNavigator() {
         },
         tabBarActiveTintColor: "blue",
         tabBarInactiveTintColor: "gray",
-        tabBarBadge: route.name === "Settings" ? 3 : null,
       })}
     >
-      <Tab.Screen name="Dashboard" component={DashboardScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Dashboard">
+        {(props) => <DashboardScreen {...props} userInfo={userInfo} />}
+      </Tab.Screen>
+      <Tab.Screen name="Settings">
+        {(props) => (
+          <SettingsScreen
+            {...props}
+            userInfo={userInfo}
+            signOutUser={signOutUser}
+          />
+        )}
+      </Tab.Screen>
     </Tab.Navigator>
   );
 }
@@ -42,19 +52,15 @@ function AppNavigator({ signOutUser, userInfo }) {
     <Stack.Navigator initialRouteName="Tabs">
       <Stack.Screen
         name="Tabs"
-        component={TabNavigator}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen name="Dashboard" component={DashboardScreen} />
-      <Stack.Screen name="Settings">
-        {(props) => (
-          <SettingsScreen
+        children={(props) => (
+          <TabNavigator
             {...props}
             userInfo={userInfo}
             signOutUser={signOutUser}
           />
         )}
-      </Stack.Screen>
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }

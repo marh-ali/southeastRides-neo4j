@@ -15,7 +15,7 @@ import {
   UPDATE_USER_DISPLAY_NAME,
   UPDATE_USER_BIO,
 } from "../services/Mutations";
-import useUserProfile from "../hooks/UseUserProfile";
+import useUserProfile from "../hooks/useUserProfile";
 import formatDate from "../utils/DateUtils";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
@@ -23,10 +23,10 @@ import ProfilePicture from "../components/ProfilePicture";
 
 function SettingsScreen({ userInfo, signOutUser }) {
   const [isEditingName, setIsEditingName] = useState(false);
-  const [isEditingBio, setIsEditingBio] = useState(false); // New state for bio editing
+  const [isEditingBio, setIsEditingBio] = useState(false);
 
   const [newDisplayName, setNewDisplayName] = useState("");
-  const [newBio, setNewBio] = useState(""); // New state variable for bio
+  const [newBio, setNewBio] = useState("");
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: "",
@@ -34,10 +34,9 @@ function SettingsScreen({ userInfo, signOutUser }) {
   });
   const [loading, setLoading] = useState(false);
   const { globalDisplayName, setGlobalDisplayName, globalBio, setGlobalBio } =
-    useAppContext(); // Include bio
+    useAppContext();
   const { loading: profileLoading, error, user } = useUserProfile(userInfo);
 
-  // New useEffect to update newDisplayName and newBio
   useEffect(() => {
     setNewDisplayName(globalDisplayName || user?.displayName || "");
     setNewBio(globalBio || user?.bio || "");

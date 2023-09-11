@@ -9,7 +9,7 @@ import SignInScreen from "./screens/SignInScreen";
 const AppProviders = ({ children, userInfo, signOutUser, promptAsync }) => {
   return userInfo ? (
     <ApolloProvider client={client}>
-      <AppProvider>
+      <AppProvider userInfo={userInfo}>
         <NavigationContainer>
           <AppNavigator signOutUser={signOutUser} userInfo={userInfo} />
           {children}
