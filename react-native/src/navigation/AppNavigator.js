@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import DashboardScreen from "../screens/DashboardScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import { Platform } from "react-native";
-import { signOut } from "firebase/auth";
+import SignInScreen from "../screens/SignInScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -48,7 +48,7 @@ function TabNavigator({ userInfo, signOutUser }) {
 }
 
 function AppNavigator({ signOutUser, userInfo }) {
-  return (
+  return userInfo ? (
     <Stack.Navigator initialRouteName="Tabs">
       <Stack.Screen
         name="Tabs"
@@ -62,6 +62,8 @@ function AppNavigator({ signOutUser, userInfo }) {
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
+  ) : (
+    SignInScreen
   );
 }
 

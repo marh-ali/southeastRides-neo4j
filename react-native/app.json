@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "southeastRides",
-    "slug": "southeastRides",
+    "name": "southeastrides",
+    "slug": "southeastrides",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,11 +24,12 @@
         "backgroundColor": "#ffffff"
       },
       "package": "dev.vitruviusio.southeastrides"
+    }
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "scheme": "southeast-rides",
+    "scheme": "southeastrides",
     "extra": {
       "eas": {
         "projectId": "74a156f4-86d5-4f80-a4b6-f30b04264d38"
@@ -38,4 +39,3 @@
       "expo-dev-client"
     ]
   }
-}
