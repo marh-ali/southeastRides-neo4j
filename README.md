@@ -1,10 +1,12 @@
+October 2023 update: I'm pausing development on this project to study and research buildling it in a fully serverless, microservice architecture.
+
 # Southeast Rides
 
 
 <img src="/assets/logo/southeast-rides-high-resolution-color-logo%20copy_v2.png" alt="southeastRides logo" style="width:40%;"/>
 
 
-Southeast Rides is more than just a ride-coordination platform—it's a cyclist's social network. Connect with fellow riders, build your circle, and gain exclusive insights into their rides. Instead of sifting through endless ad-hoc messages, Southeast Rides offers a unified space where you can create, share, and RSVP to cycling events. Discover new routes, set up your own rides, and ensure you never miss an opportunity to pedal with friends.
+Southeast Rides is more than just a ride-coordination platform—it's a cyclist's social network. Connect with fellow riders, build your circle, and gain insights into their rides. Instead of sifting through endless ad-hoc messages, Southeast Rides offers a unified space where you can create, share, and RSVP to cycling events. Discover new routes, set up your own rides, and ensure you never miss an opportunity to pedal with friends.
 
 
 ## Contributing
