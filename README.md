@@ -1,4 +1,4 @@
-October 2023 update: I'm pausing development on this project to study and research buildling it in a fully serverless, microservice architecture.
+October 2023 update: I'm pausing development on this project to study and research building it in a fully serverless, microservice architecture with AWS.
 
 # Southeast Rides
 
@@ -8,6 +8,8 @@ October 2023 update: I'm pausing development on this project to study and resear
 
 Southeast Rides is more than just a ride-coordination platform—it's a cyclist's social network. Connect with fellow riders, build your circle, and gain insights into their rides. Instead of sifting through endless ad-hoc messages, Southeast Rides offers a unified space where you can create, share, and RSVP to cycling events. Discover new routes, set up your own rides, and ensure you never miss an opportunity to pedal with friends.
 
+<img src="/assets/arch%20diagram.png" alt="southeastRides architectural diagram" />
+(architecture under review)
 
 ## Contributing
 
